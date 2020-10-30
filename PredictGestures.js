@@ -269,9 +269,19 @@ function DrawImageToHelpUserPutTheirHandOverTheDevice(){
     image(img, 20, 20, window.innerWidth/2.2, window.innerHeight/2.2);
 }
 function SignIn(){
-    username = document.getElementById('username').value;
-    console.log(username);
     
+    
+            
+   
+    
+    var list = document.getElementById('users');
+    var item = document.createElement('li');
+    item.innerHTML = String(username);
+    username = document.getElementById('username').value;
+    list.appendChild(item);
+    console.log(username);
+    console.log(list.innerHTML);
+    return false;
 }
 Leap.loop(controllerOptions,function(frame){
     clear();
