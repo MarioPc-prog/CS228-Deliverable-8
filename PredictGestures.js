@@ -268,6 +268,11 @@ function TrainKNNIfNotDoneYet() {
 function DrawImageToHelpUserPutTheirHandOverTheDevice(){
     image(img, 20, 20, window.innerWidth/2.2, window.innerHeight/2.2);
 }
+function SignIn(){
+    username = document.getElementById('username').value;
+    console.log(username);
+    
+}
 Leap.loop(controllerOptions,function(frame){
     clear();
     DetermineState(frame);
