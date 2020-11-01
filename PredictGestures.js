@@ -269,19 +269,44 @@ function DrawImageToHelpUserPutTheirHandOverTheDevice(){
     image(img, 20, 20, window.innerWidth/2.2, window.innerHeight/2.2);
 }
 function SignIn(){
-    
-    
-            
-   
-    
-    var list = document.getElementById('users');
-    var item = document.createElement('li');
-    item.innerHTML = String(username);
     username = document.getElementById('username').value;
-    list.appendChild(item);
-    console.log(username);
+    var list = document.getElementById('users');
+    if(IsNewUser(username, list)){
+        //functions to create new user and create Sign in item 
+        CreateNewUser(username,list);
+        CreateSignInItem(username,list);
+    }
+    else{
+        var ID = String(username) + "_signins";
+        //Will return such an item.
+        var listItem = document.getElementById(ID);
+        listItem.innerHTML = parseInt (listItem.innerHTML) + 1;
+    }
     console.log(list.innerHTML);
     return false;
+
+}
+function IsNewUser(username,list){
+    var usernameFound = false;
+    var users = list.children;
+    for (var i = 0; i < users.length; i++) {
+        if (username == users[i].innerHTML){
+            usernameFound = true;
+        }
+    }
+    return usernameFound == false;
+}
+function CreateNewUser(username,list){
+    var item = document.createElement('li');
+    item.id = String(username) + "_name";
+    item.innerHTML = String(username);
+    list.appendChild(item);
+}
+function CreateSignInItem(username,list){
+    var item2 = document.createElement('li');
+    item2.id = String(username) + "_signins";
+    item2.innerHTML = 1;
+    list.appendChild(item2);
 }
 Leap.loop(controllerOptions,function(frame){
     clear();
